@@ -1,34 +1,49 @@
 import React from 'react';
 
 const Footer = () => {
+    const comapnyInfo = [
+        'About Us',
+        'Contact Us',
+        'FAQs',
+        'Terms & Conditions',
+        'Cancellation & Refund Policy',
+        "Privacy Policy",
+        'Blog',
+    ]
+    const CoverageArea = [
+        'Dhaka',
+        'Keraniganj',
+        'Gazipur',
+        'Savar',
+        'Chittagong',
+        "Cox's Bazar",
+        'Barisal',
+    ]
     return (
         <footer className="bg-success p-2 text-dark bg-opacity-25 page-footer font-small blue pt-4 mt-5">
             <div className="container-fluid text-center text-md-left">
                 <div className="row">
                     <div className="col-md-6 mt-md-0 mt-3">
-                        <h5 className="text-uppercase">Footer Content</h5>
-                        <p>Here you can use rows and columns to organize your footer content.</p>
+                        <h5 className="text-uppercase">Foodies Express</h5>
+                        <p>Your Favourite Food delivery Partner.</p>
                     </div>
 
                     <hr className="clearfix w-100 d-md-none pb-0" />
 
-                    <div className="col-md-3 mb-md-0 mb-3">
+                    <div className=" text-start col-md-3 mb-md-0 mb-3">
                         <h5 className="text-uppercase">Links</h5>
                         <ul className="list-unstyled">
-                            <li><a href="#!">Link 1</a></li>
-                            <li><a href="#!">Link 2</a></li>
-                            <li><a href="#!">Link 3</a></li>
-                            <li><a href="#!">Link 4</a></li>
+                            {
+                                comapnyInfo.map(info => <li><a href="#!">{info}</a></li>)
+                            }
                         </ul>
                     </div>
 
-                    <div className="col-md-3 mb-md-0 mb-3">
-                        <h5 className="text-uppercase">Links</h5>
-                        <ul className="list-unstyled">
-                            <li><a href="#!">Link 1</a></li>
-                            <li><a href="#!">Link 2</a></li>
-                            <li><a href="#!">Link 3</a></li>
-                            <li><a href="#!">Link 4</a></li>
+                    <div className="text-start col-md-3 mb-md-0 mb-3">
+                        <h5 className="text-uppercase">COVERAGE AREA</h5>
+                        <ul className="list-unstyled ">
+                            {CoverageArea.map(area => <li><a className='text-decoration-none' href="/">{area} </a></li>)}
+
                         </ul>
                     </div>
                 </div>

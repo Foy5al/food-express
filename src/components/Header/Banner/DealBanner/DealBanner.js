@@ -27,7 +27,7 @@ const DealBanner = (props) => {
 
     return (
 
-        <div>
+        <div className='my-5'>
             <Carousel className='deal-img'
                 swipeable={false}
                 draggable={false}
