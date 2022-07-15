@@ -47,12 +47,12 @@ const Navigation = () => {
 
                         <Nav className="me-auto">
                             <Button variant="primary" onClick={handleShow}>
-                                {locationData}
+                                <PinMapFill />{locationData}
                             </Button>
 
                             <Modal show={show} onHide={handleClose}>
                                 <Modal.Header closeButton>
-                                    <Modal.Title>Modal heading</Modal.Title>
+                                    <Modal.Title>Set Delivery Location</Modal.Title>
                                 </Modal.Header>
                                 <Modal.Body>
                                     <Form ref={loc}>

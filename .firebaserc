@@ -1,6 +1,5 @@
 {
-  "hosting": {
-    "site": "foodiesexpress",
-    "public": "public"
+  "projects": {
+    "default": "foodiesexpressbd"
   }
 }
