@@ -6,12 +6,13 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { PinMapFill } from 'react-bootstrap-icons';
-import { Link } from 'react-router-dom';
+import { PersonBadge } from 'react-bootstrap-icons';
+import { Link, NavLink } from 'react-router-dom';
 import { useRef } from 'react';
+import useAuth from '../../Hooks/useAuth';
 
 const Navigation = () => {
-    // const location = Geolocation.getCurrentPosition();
-    // console.log(location);
+    const { user } = useAuth();
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -86,13 +87,7 @@ const Navigation = () => {
                                             />
 
                                         </Form.Group>
-                                        {/* <Form.Group
-                                            className="mb-3"
-                                            controlId="exampleForm.ControlTextarea1"
-                                        >
-                                            <Form.Label>Example textarea</Form.Label>
-                                            <Form.Control as="textarea" rows={3} />
-                                        </Form.Group> */}
+
                                     </Form>
                                 </Modal.Body>
                                 <Modal.Footer>
@@ -117,6 +112,13 @@ const Navigation = () => {
                                 />
                                 <Button variant="outline-success">Search</Button>
                             </Form>
+                            {
+                                !user?.email ? <Button variant="success ms-2">
+                                    <NavLink className="text-decoration-none text-white " to="/login"><PersonBadge /> Login</NavLink>
+                                </Button> : <span className='ms-1'>
+                                    <img style={{ width: "40px" }} class="rounded-circle z-depth-2" alt="Img" src={user.photoURL}
+                                        data-holder-rendered="true" /><Link className='text-white text-center ms-1' to='/login'>{user.displayName}</Link></span>
+                            }
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
