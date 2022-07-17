@@ -34,7 +34,7 @@ const Footer = () => {
                         <h5 className="text-uppercase">Links</h5>
                         <ul className="list-unstyled">
                             {
-                                comapnyInfo.map(info => <li><a href="#!">{info}</a></li>)
+                                comapnyInfo.map(info => <li key={info}><a href="#!">{info}</a></li>)
                             }
                         </ul>
                     </div>
@@ -42,7 +42,7 @@ const Footer = () => {
                     <div className="text-start col-md-3 mb-md-0 mb-3">
                         <h5 className="text-uppercase">COVERAGE AREA</h5>
                         <ul className="list-unstyled ">
-                            {CoverageArea.map(area => <li><a className='text-decoration-none' href="/">{area} </a></li>)}
+                            {CoverageArea.map(area => <li key={area}><a className='text-decoration-none' href="/">{area} </a></li>)}
 
                         </ul>
                     </div>
