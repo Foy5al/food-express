@@ -8,7 +8,6 @@ const googleProvider = new GoogleAuthProvider();
 
 const useFirebase = () => {
   const [user, setUser] = useState({});
-  console.log(user);
 
   const auth = getAuth();
   const singInUsingGoogle = () => {
