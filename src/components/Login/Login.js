@@ -17,11 +17,10 @@ const Login = () => {
             .then((result) => {
                 const loggedInUser = result.user;
                 setUser(loggedInUser);
-                history.push(redirect_url);
+                history(redirect_url);
             })
             .catch((error) => {
                 const errorMessage = error.message;
-                console.log(errorMessage);
                 setError(errorMessage);
             })
             .finally(() => setIsLoading(false));

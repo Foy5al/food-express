@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form';
 const AddShopMenu = () => {
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
-        console.log(data);
 
         axios.post('https://rocky-wave-02571.herokuapp.com/serviecs', data)
             .then(resp => {
@@ -20,7 +19,6 @@ const AddShopMenu = () => {
 
                     })
                 }
-                console.log(resp);
             })
     }
     return (

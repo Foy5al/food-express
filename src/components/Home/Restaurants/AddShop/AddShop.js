@@ -6,9 +6,7 @@ import { Button } from 'react-bootstrap';
 const AddShop = () => {
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
-        console.log(data);
         const url = `${process.env.REACT_APP_URL}/add/shop`;
-        console.log(url);
         axios.post('http://localhost:5000/add/shop', data)
             .then(resp => {
                 if (resp.data.insertedId) {
@@ -22,17 +20,15 @@ const AddShop = () => {
 
                     })
                 }
-                console.log(resp);
             })
     }
 
 
 
     const addMenu = () => {
-        console.log('menu is clicked')
     }
     return (
-        <div className='container w-50'>
+        <div className='container vh-100 w-50'>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <h3 className='text-center shadow p-2 rounded my-2'>Add A New Shop</h3>
                 <div className="mb-3">

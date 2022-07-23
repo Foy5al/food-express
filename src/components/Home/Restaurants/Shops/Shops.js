@@ -14,7 +14,6 @@ const Shops = () => {
             .then(resp => setCardData(resp.data));
     })
 
-    console.log(cardData[0]?.resturent_name);
     return (
         <div>
             {!cardData[0]?.resturent_name ? <LoadingSpinner /> : <Row xs={1} md={2} lg={3} className="g-4">

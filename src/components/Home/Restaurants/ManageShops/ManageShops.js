@@ -12,10 +12,8 @@ const ManageShops = () => {
     }, [])
 
     const handleDeleteBtn = id => {
-        console.log(id);
         axios.delete(`${process.env.REACT_APP_URL}/deleteshop/${id}`)
             .then(resp => {
-                console.log(resp);
                 if (resp.data.deletedCount === 1) {
                     alert('Item is delete successfully')
                     const remaining = cardData.filter(service => service._id !== id);
@@ -24,7 +22,7 @@ const ManageShops = () => {
             });
     }
     return (
-        <div className='container'>
+        <div className='container-fluid vh-100'>
             <ol>
                 <img src="" alt="" />
                 {cardData.map((shops) => (
