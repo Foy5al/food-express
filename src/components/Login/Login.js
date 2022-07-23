@@ -5,9 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
 
 const Login = () => {
-    const { singInUsingGoogle, setUser, user } = useAuth();
-
-    console.log(user);
+    const { singInUsingGoogle, setUser, user, logout, setIsLoading, setError } = useAuth();
 
     const history = useNavigate();
     const location = useLocation();
@@ -24,10 +22,11 @@ const Login = () => {
             .catch((error) => {
                 const errorMessage = error.message;
                 console.log(errorMessage);
-                // setError(errorMessage);
+                setError(errorMessage);
             })
-        // .finally(() => setIsLoading(false));
+            .finally(() => setIsLoading(false));
     }
+
     return (
         <div className='container-fluid min-vh-100'>
             {!user?.email ? <div className='container w-50'>
@@ -105,7 +104,7 @@ const Login = () => {
                                                 <h6>Most Viewed</h6>
                                                 <p className="text-muted">Dolor sit amet</p>
                                             </div>
-                                            <Button variant="danger">Logout</Button>
+                                            <Button onClick={logout} variant="danger">Logout</Button>
                                         </div>
                                     </div>
                                 </div>

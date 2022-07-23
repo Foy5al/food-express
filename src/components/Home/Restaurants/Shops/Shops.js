@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { Button, Card, Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import LoadingSpinner from '../../../Common/LoadingSpinner/LoadingSpinner';
 import './Shop.css';
 
 const Shops = () => {
@@ -10,11 +11,13 @@ const Shops = () => {
     const url = `${process.env.REACT_APP_URL}/shops`;
     useEffect(() => {
         axios.get(url)
-            .then(resp => setCardData(resp.data))
-    }, [])
+            .then(resp => setCardData(resp.data));
+    })
+
+    console.log(cardData[0]?.resturent_name);
     return (
         <div>
-            <Row xs={1} md={2} lg={3} className="g-4">
+            {!cardData[0]?.resturent_name ? <LoadingSpinner /> : <Row xs={1} md={2} lg={3} className="g-4">
                 {cardData.map((shops) => (
                     <Col key={shops._id}>
                         <Card>
@@ -36,9 +39,8 @@ const Shops = () => {
                         </Card>
                     </Col>
                 ))}
-            </Row>
-
-        </div>
+            </Row>}
+        </div >
     );
 };
 

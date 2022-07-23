@@ -10,6 +10,7 @@ import { PersonBadge } from 'react-bootstrap-icons';
 import { Link, NavLink } from 'react-router-dom';
 import { useRef } from 'react';
 import useAuth from '../../Hooks/useAuth';
+import { NavDropdown } from 'react-bootstrap';
 
 const Navigation = () => {
     const { user } = useAuth();
@@ -39,17 +40,30 @@ const Navigation = () => {
 
 
     return (
-        <div>
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <div className="bg-success p-2 text-dark bg-opacity-75 page-footer font-small blue">
+            <Navbar collapseOnSelect expand="lg" variant="dark">
                 <Container>
-                    <Navbar.Brand><Link className='text-success text-decoration-none' to='/'>Foodies Express</Link></Navbar.Brand>
+                    <Navbar.Brand><Link className='text-white text-decoration-none' to='/'>Foodies Express</Link></Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
 
-                        <Nav className="me-auto">
-                            <Button variant="primary" onClick={handleShow}>
+                        <Nav className="me-auto mt-2">
+                            <Button className='mb-1' variant="light" onClick={handleShow}>
                                 <PinMapFill />{locationData}
                             </Button>
+
+                            <NavDropdown title="Manage Shop" id="basic-nav-dropdown">
+                                <NavDropdown.Item >
+                                    <NavLink className='text-decoration-none text-success' to='/manageshops'>Manage Shop</NavLink>
+                                </NavDropdown.Item>
+                                <NavDropdown.Divider />
+
+                                <NavDropdown.Item >
+                                    <NavLink className='text-decoration-none text-success' to='/add/shop'>Add New Shop</NavLink>
+                                </NavDropdown.Item>
+                                {/* <NavDropdown.Divider /> */}
+
+                            </NavDropdown>
 
                             <Modal show={show} onHide={handleClose}>
                                 <Modal.Header closeButton>
@@ -103,20 +117,20 @@ const Navigation = () => {
                         </Nav>
 
                         <Nav>
-                            <Form className="d-flex">
+                            <Form className="d-flex mb-1">
                                 <Form.Control
                                     type="search"
                                     placeholder="Search"
                                     className="me-2"
                                     aria-label="Search"
                                 />
-                                <Button variant="outline-success">Search</Button>
+                                <Button variant="outline-light ">Search</Button>
                             </Form>
                             {
-                                !user?.email ? <Button variant="success ms-2">
-                                    <NavLink className="text-decoration-none text-white " to="/login"><PersonBadge /> Login</NavLink>
+                                !user?.email ? <Button variant="light ms-2 shadow-sm">
+                                    <NavLink className="text-decoration-none text-success" to="/login"><PersonBadge /> Login</NavLink>
                                 </Button> : <span className='ms-1'>
-                                    <img style={{ width: "40px" }} class="rounded-circle z-depth-2" alt="Img" src={user.photoURL}
+                                    <img style={{ width: "40px" }} className="rounded-circle z-depth-2" alt="Img" src={user.photoURL}
                                         data-holder-rendered="true" /><Link className='text-white text-center ms-1' to='/login'>{user.displayName}</Link></span>
                             }
                         </Nav>
