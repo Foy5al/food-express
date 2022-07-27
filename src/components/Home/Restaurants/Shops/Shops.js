@@ -12,7 +12,9 @@ const Shops = () => {
     useEffect(() => {
         axios.get(url)
             .then(resp => setCardData(resp.data));
-    })
+    }, [cardData])
+
+
 
     return (
         <div>

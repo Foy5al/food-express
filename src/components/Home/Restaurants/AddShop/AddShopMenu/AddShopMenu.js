@@ -1,26 +1,15 @@
 import axios from 'axios';
 import React from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 const AddShopMenu = () => {
     const { register, handleSubmit, reset } = useForm();
+    const [menuData, setMenuData] = useState([]);
     const onSubmit = data => {
-
-        axios.post('https://rocky-wave-02571.herokuapp.com/serviecs', data)
-            .then(resp => {
-                if (resp.data.insertedId) {
-                    alert('Added data successfully');
-                    reset({
-                        itemName: '',
-                        description: '',
-                        price: '',
-                        time: '',
-                        imgurl: ''
-
-                    })
-                }
-            })
+        setMenuData([...menuData, data]);
     }
+    // console.log(menuData);
     return (
         <div>
             <div className="mb-3">

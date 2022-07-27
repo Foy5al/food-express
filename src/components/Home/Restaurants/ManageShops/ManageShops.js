@@ -2,14 +2,29 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Trash, CardText } from 'react-bootstrap-icons';
+import { useLocation } from 'react-router-dom';
+import './MangeShops.css'
 
 const ManageShops = () => {
+    const [isAddShop, setIsAddShop] = useState(true)
     const [cardData, setCardData] = useState([]);
+    const location = useLocation();
+
+    //this is used for conditional rendering of update btn
+    useEffect(() => {
+        if (location.pathname === '/add/shop') {
+            setIsAddShop(false)
+        }
+        else {
+            setIsAddShop(true);
+        }
+    }, [])
+
     const url = `${process.env.REACT_APP_URL}/shops`;
     useEffect(() => {
         axios.get(url)
             .then(resp => setCardData(resp.data))
-    }, [])
+    }, [cardData])
 
     const handleDeleteBtn = id => {
         axios.delete(`${process.env.REACT_APP_URL}/deleteshop/${id}`)
@@ -22,7 +37,7 @@ const ManageShops = () => {
             });
     }
     return (
-        <div className='container-fluid vh-100'>
+        <div className='container-fluid containerHeight'>
             <ol>
                 <img src="" alt="" />
                 {cardData.map((shops) => (
@@ -32,9 +47,9 @@ const ManageShops = () => {
                             {shops.resturent_name}
                         </div>
                         <div>
-                            <Button variant='info mx-2 shadow'>
-                                <CardText /> Edit
-                            </Button>
+                            {isAddShop ? <Button variant='info mx-2 shadow'>
+                                <CardText /> Update Menu
+                            </Button> : <></>}
                             <Button onClick={() => { handleDeleteBtn(shops._id) }} variant='danger shadow'>
                                 <Trash /> Delete
                             </Button>

@@ -1,11 +1,11 @@
 import Button from 'react-bootstrap/Button'
 import React from 'react';
-import { Google } from 'react-bootstrap-icons';
+import { Google, Github } from 'react-bootstrap-icons';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
 
 const Login = () => {
-    const { singInUsingGoogle, setUser, user, logout, setIsLoading, setError } = useAuth();
+    const { singInUsingGoogle, singInUsingGithub, setUser, user, logout, setIsLoading, setError } = useAuth();
 
     const history = useNavigate();
     const location = useLocation();
@@ -22,6 +22,18 @@ const Login = () => {
             .catch((error) => {
                 const errorMessage = error.message;
                 setError(errorMessage);
+            })
+            .finally(() => setIsLoading(false));
+    }
+    const loginWithGithub = () => {
+        singInUsingGithub()
+            .then((result) => {
+                const loggedInUser = result.user;
+                setUser(loggedInUser);
+                history.push(redirect_url);
+            })
+            .catch(error => {
+                setError(error.message)
             })
             .finally(() => setIsLoading(false));
     }
@@ -61,7 +73,8 @@ const Login = () => {
                     <div className="d-flex flex-column mx-auto">
                         <p className='text-center'>or</p>
                         <div className='text-center'>
-                            <button onClick={loginWithGoogle} className='btn btn-outline-primary'> <Google /></button>
+                            <button onClick={loginWithGoogle} className='btn btn-outline-primary m-2'> <Google /></button>
+                            <button onClick={loginWithGithub} className='btn btn-outline-dark m-2'> <Github /></button>
                         </div>
                     </div>
                 </div>
