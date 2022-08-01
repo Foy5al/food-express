@@ -6,14 +6,19 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { PinMapFill } from 'react-bootstrap-icons';
-import { PersonBadge } from 'react-bootstrap-icons';
+import { PersonBadge, BagHeartFill } from 'react-bootstrap-icons';
 import { Link, NavLink } from 'react-router-dom';
 import { useRef } from 'react';
 import useAuth from '../../Hooks/useAuth';
 import { NavDropdown } from 'react-bootstrap';
+import FoodCart from '../Home/Restaurants/Shop/FoodCart/FoodCart';
+import useCartData from '../../Hooks/useCartData';
 
 const Navigation = () => {
     const { user } = useAuth();
+    const { cart } = useCartData();
+    console.log(cart, 'this is form nav');
+
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -37,7 +42,7 @@ const Navigation = () => {
         "Cox's Bazar",
         'Barisal',
     ]
-
+    const [cartShow, setCartShow] = useState(false);
 
     return (
         <div className="bg-success p-2 text-dark bg-opacity-75 page-footer font-small blue">
@@ -117,15 +122,7 @@ const Navigation = () => {
                         </Nav>
 
                         <Nav>
-                            <Form className="d-flex mb-1">
-                                <Form.Control
-                                    type="search"
-                                    placeholder="Search"
-                                    className="me-2"
-                                    aria-label="Search"
-                                />
-                                <Button variant="outline-light ">Search</Button>
-                            </Form>
+
                             {
                                 !user?.email ? <Button variant="light ms-2 shadow-sm">
                                     <NavLink className="text-decoration-none text-success" to="/login"><PersonBadge /> Login</NavLink>
@@ -133,6 +130,31 @@ const Navigation = () => {
                                     <img style={{ width: "40px" }} className="rounded-circle z-depth-2" alt="Img" src={user.photoURL}
                                         data-holder-rendered="true" /><Link className='text-white text-center ms-1' to='/login'>{user.displayName}</Link></span>
                             }
+
+                            {/* cart start here */}
+                            <button onClick={() => setCartShow(true)} type="button" className="btn btn-primary position-relative ms-2">
+                                Cart <BagHeartFill />
+                                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    {cart?.length}
+                                    <span className="visually-hidden">unread messages</span>
+                                </span>
+                            </button>
+                            <Modal
+                                size="lg"
+                                show={cartShow}
+                                onHide={() => setCartShow(false)}
+                                aria-labelledby="example-modal-sizes-title-lg"
+                            >
+                                <Modal.Header closeButton>
+                                    <Modal.Title id="example-modal-sizes-title-lg">
+                                        <BagHeartFill />  Cart
+                                    </Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    <FoodCart setCartShow={setCartShow} />
+                                </Modal.Body>
+                            </Modal>
+
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

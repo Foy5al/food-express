@@ -2,13 +2,24 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Trash, CardText } from 'react-bootstrap-icons';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './MangeShops.css'
 
 const ManageShops = () => {
     const [isAddShop, setIsAddShop] = useState(true)
     const [cardData, setCardData] = useState([]);
     const location = useLocation();
+
+    const handleDeleteBtn = id => {
+        axios.delete(`${process.env.REACT_APP_URL}/deleteshop/${id}`)
+            .then(resp => {
+                if (resp.data.deletedCount === 1) {
+                    alert('Item is delete successfully')
+                    const remaining = cardData.filter(service => service._id !== id);
+                    setCardData(remaining);
+                }
+            });
+    }
 
     //this is used for conditional rendering of update btn
     useEffect(() => {
@@ -26,18 +37,11 @@ const ManageShops = () => {
             .then(resp => setCardData(resp.data))
     }, [cardData])
 
-    const handleDeleteBtn = id => {
-        axios.delete(`${process.env.REACT_APP_URL}/deleteshop/${id}`)
-            .then(resp => {
-                if (resp.data.deletedCount === 1) {
-                    alert('Item is delete successfully')
-                    const remaining = cardData.filter(service => service._id !== id);
-                    setCardData(remaining);
-                }
-            });
-    }
+
+
+
     return (
-        <div className='container-fluid containerHeight'>
+        <div className='container containerHeight'>
             <ol>
                 <img src="" alt="" />
                 {cardData.map((shops) => (
@@ -47,10 +51,11 @@ const ManageShops = () => {
                             {shops.resturent_name}
                         </div>
                         <div>
-                            {isAddShop ? <Button variant='info mx-2 shadow'>
+                            {isAddShop ? <Link to={`/add/menu/${shops.resturent_name}`}><Button variant='info mx-2 shadow'>
                                 <CardText /> Update Menu
-                            </Button> : <></>}
-                            <Button onClick={() => { handleDeleteBtn(shops._id) }} variant='danger shadow'>
+                            </Button></Link> : <></>}
+
+                            <Button onClick={() => { handleDeleteBtn(shops.resturent_name) }} variant='danger shadow'>
                                 <Trash /> Delete
                             </Button>
                         </div>

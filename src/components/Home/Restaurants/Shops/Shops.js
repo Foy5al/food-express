@@ -5,6 +5,7 @@ import { Button, Card, Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import LoadingSpinner from '../../../Common/LoadingSpinner/LoadingSpinner';
 import './Shop.css';
+import { ArrowRightCircleFill, StarFill } from 'react-bootstrap-icons';
 
 const Shops = () => {
     const [cardData, setCardData] = useState([]);
@@ -18,7 +19,7 @@ const Shops = () => {
 
     return (
         <div>
-            {!cardData[0]?.resturent_name ? <LoadingSpinner /> : <Row xs={1} md={2} lg={3} className="g-4">
+            {cardData[0]?.resturent_name ? <Row xs={1} md={2} lg={3} className="g-4">
                 {cardData.map((shops) => (
                     <Col key={shops._id}>
                         <Card>
@@ -26,21 +27,19 @@ const Shops = () => {
                             <Card.Body>
                                 <Card.Title> <Card.Img className="rounded-circle z-depth-2 mx-2" alt="40x40 logo" style={{ width: "40px" }} variant="top" src={shops.logo} />{shops.resturent_name}</Card.Title>
                                 <Card.Text>
-                                    This is a longer card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit
-                                    longer.
+                                    Hope your'e hungry! Please order your desire foods by clicking into the order now btn 😊
                                 </Card.Text>
                             </Card.Body>
                             <Card.Footer className="d-flex justify-content-between">
-                                <Button>
-                                    <Link className='text-decoration-none text-white' to={`/shop/${shops._id}`}>Order Now</Link>
+                                <Button variant='success'>
+                                    <Link className='text-decoration-none text-white' to={`/shop/${shops.resturent_name}`}>Order Now <ArrowRightCircleFill /></Link>
                                 </Button>
-                                <p>Rating: {shops.rating}</p>
+                                <p>Rating: {shops.rating} <StarFill /></p>
                             </Card.Footer>
                         </Card>
                     </Col>
                 ))}
-            </Row>}
+            </Row> : <LoadingSpinner />}
         </div >
     );
 };
