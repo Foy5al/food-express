@@ -3,11 +3,11 @@ import useCartData from '../../../../../Hooks/useCartData';
 import { Trash, CartCheck } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 
-const FoodCart = () => {
-    const { cart } = useCartData();
-    console.log(cart);
+const FoodCart = ({ setCartShow }) => {
+    const { cart, setPrice } = useCartData();
 
     let total = 0;
+    let price = 0;
     let shipping = 30;
     let subTotal = 0;
     let totalQuantity = 0;
@@ -16,11 +16,11 @@ const FoodCart = () => {
         if (!product.quantity) {
             product.quantity = 1;
         }
+        price = Number(product.price) * product.quantity;
         totalQuantity = totalQuantity + product.quantity;
-        console.log(product.price);
-        total = total + Number(product.price);
+        total = total + price;
         subTotal = total + shipping;
-        console.log(subTotal)
+        setPrice(subTotal);
     }
 
 
@@ -68,7 +68,7 @@ const FoodCart = () => {
                         <span className='text-success'> {subTotal}৳
                         </span></div>
                     <div>
-                        <Link to='/shipping'>
+                        <Link onClick={() => { setCartShow(false) }} to='/shipping'>
                             <button className='btn-info rounded shadow'>
                                 <CartCheck /> Checkout
                             </button>
@@ -76,9 +76,7 @@ const FoodCart = () => {
                     </div>
                 </li>
                 <hr />
-            </ol> : <ol>
-                <li className='text-secondary'>Cart Is Empty Now</li>
-            </ol>
+            </ol> : <div className='text-secondary'>Cart Is Empty Now</div>
             }
 
         </div>

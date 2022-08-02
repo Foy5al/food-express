@@ -10,6 +10,7 @@ const AddShop = () => {
 
     const onSubmit = data => {
         const url = `${process.env.REACT_APP_URL}/add/shop`;
+        console.log(data);
         axios.post(url, data)
             .then(resp => {
                 if (resp.data.insertedId) {

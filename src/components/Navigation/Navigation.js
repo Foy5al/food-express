@@ -17,7 +17,6 @@ import useCartData from '../../Hooks/useCartData';
 const Navigation = () => {
     const { user } = useAuth();
     const { cart } = useCartData();
-    console.log(cart, 'this is form nav');
 
     const [show, setShow] = useState(false);
 
@@ -66,8 +65,17 @@ const Navigation = () => {
                                 <NavDropdown.Item >
                                     <NavLink className='text-decoration-none text-success' to='/add/shop'>Add New Shop</NavLink>
                                 </NavDropdown.Item>
-                                {/* <NavDropdown.Divider /> */}
+                            </NavDropdown>
 
+                            <NavDropdown title="Manage Order" id="basic-nav-dropdown">
+                                <NavDropdown.Item >
+                                    <NavLink className='text-decoration-none text-success' to='/all/orders'>All Orders</NavLink>
+                                </NavDropdown.Item>
+                                <NavDropdown.Divider />
+
+                                <NavDropdown.Item >
+                                    <NavLink className='text-decoration-none text-success' to='my/orders/:email'>My Orders</NavLink>
+                                </NavDropdown.Item>
                             </NavDropdown>
 
                             <Modal show={show} onHide={handleClose}>

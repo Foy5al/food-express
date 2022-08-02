@@ -13,7 +13,6 @@ import PrivetRoute from './components/PriverRoute/PrivetRoute';
 import AddShopMenu from './components/Home/Restaurants/AddShop/AddShopMenu/AddShopMenu';
 import AllOrders from './components/Orders/AllOrders/AllOrders';
 import MyOrders from './components/Orders/MyOrders/MyOrders';
-import ManageOrders from './components/Orders/ManageOrders/ManageOrders';
 import CartDataProvider from './components/Context/CartDataProvider';
 import Shipping from './components/Home/Restaurants/Shipping/Shipping';
 
@@ -47,23 +46,18 @@ function App() {
             </PrivetRoute>
           } />
 
-          <Route path='/orders' element={
+          <Route path='/all/orders' element={
             <PrivetRoute>
               <AllOrders />
             </PrivetRoute>
           } />
 
-          <Route path='/orders/:email' element={
+          <Route path='/my/orders/:email' element={
             <PrivetRoute>
               <MyOrders />
             </PrivetRoute>
           } />
 
-          <Route path='/manage/orders' element={
-            <PrivetRoute>
-              <ManageOrders />
-            </PrivetRoute>
-          } />
 
           <Route path='/shipping' element={
             <PrivetRoute>
