@@ -1,26 +1,19 @@
-import axios from 'axios';
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React from 'react';
 import { Button, Card, Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import LoadingSpinner from '../../../Common/LoadingSpinner/LoadingSpinner';
 import './Shop.css';
 import { ArrowRightCircleFill, StarFill } from 'react-bootstrap-icons';
 
-const Shops = () => {
-    const [cardData, setCardData] = useState([]);
-    const url = `${process.env.REACT_APP_URL}/shops`;
-    useEffect(() => {
-        axios.get(url)
-            .then(resp => setCardData(resp.data));
-    }, [cardData])
+const Shops = (props) => {
 
+    const cartData = props?.cardData;
 
 
     return (
         <div>
-            {cardData[0]?.resturent_name ? <Row xs={1} md={2} lg={3} className="g-4">
-                {cardData.map((shops) => (
+            {cartData[0]?.resturent_name ? <Row xs={1} md={2} lg={3} className="g-4">
+                {cartData.map((shops) => (
                     <Col key={shops._id}>
                         <Card>
                             <Card.Img style={{ height: '150px' }} variant="top" src={shops.imgLink} />

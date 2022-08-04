@@ -1,7 +1,7 @@
 import Button from 'react-bootstrap/Button'
 import React from 'react';
 import { Google, Github } from 'react-bootstrap-icons';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
 
 const Login = () => {
@@ -66,7 +66,7 @@ const Login = () => {
                         </button>
                     </div>
                     <p className="forgot-password text-right">
-                        Forgot <a href="#">password?</a>
+                        New Here? <Link to="/register">Click to Register</Link>
                     </p>
                 </form >
                 <div className="mb-3">

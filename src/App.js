@@ -15,6 +15,7 @@ import AllOrders from './components/Orders/AllOrders/AllOrders';
 import MyOrders from './components/Orders/MyOrders/MyOrders';
 import CartDataProvider from './components/Context/CartDataProvider';
 import Shipping from './components/Home/Restaurants/Shipping/Shipping';
+import AllMenus from './components/Home/Restaurants/Shop/AllMenus/AllMenus';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
+          <Route path='/menus' element={<AllMenus />} />
           <Route path='/add/shop' element={
             <PrivetRoute>
               <AddShop />
