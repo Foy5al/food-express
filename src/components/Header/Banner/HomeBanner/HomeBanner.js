@@ -5,41 +5,38 @@ const HomeBanner = () => {
     return (
         <div>
             <Carousel>
-                <Carousel.Item interval={1000}>
-                    <img
-                        className="d-block w-100"
-                        src="https://static.hungrynaki.com/hungrynaki-v4/home-banner/bkash_june_home_banner_web_home_banner_1656310953576.png"
-                        alt="First slide"
-                    />
-                    <Carousel.Caption>
-                        {/* <h3>First slide label</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p> */}
-                    </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item interval={500}>
-                    <img
-                        className="d-block w-100"
-                        src="https://static.hungrynaki.com/hungrynaki-v4/home-banner/dhaka__bank_home_banner_web_home_banner_1655987225133.png"
-                        alt="Second slide"
-                    />
-                    <Carousel.Caption>
-                        {/* <h3>Second slide label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> */}
-                    </Carousel.Caption>
-                </Carousel.Item>
                 <Carousel.Item>
-                    <img
+                    <img height={'400px'}
                         className="d-block w-100"
-                        src="https://static.hungrynaki.com/hungrynaki-v4/home-banner/bkash_june_home_banner_web_home_banner_1656310953576.png"
+                        src="http://kingsbiryanii.com/assets/images/portfolio/extended/Kings-biryanii-banner-3.jpg"
                         alt="Third slide"
                     />
-                    <Carousel.Caption>
-                        {/*  <h3>Third slide label</h3>
-                        <p>
-                            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                        </p> */}
-                    </Carousel.Caption>
                 </Carousel.Item>
+
+                <Carousel.Item interval={1000}>
+                    <img height={'400px'}
+                        className="d-block w-100"
+                        src="https://dev.zoodigital.ie/burgerking/wp-content/uploads/2015/12/KingDeals-Banner_1800x760.jpg"
+                        alt="First slide"
+                    />
+
+                </Carousel.Item>
+                <Carousel.Item interval={500}>
+                    <img height={'400px'}
+                        className="d-block w-100"
+                        src="https://i.pinimg.com/originals/f3/dc/7d/f3dc7d50d75c9706b2db39283a1dc3cb.jpg"
+                        alt="Second slide"
+                    />
+
+                </Carousel.Item>
+                <Carousel.Item>
+                    <img height={'400px'}
+                        className="d-block w-100"
+                        src="https://admin.sajilomeals.com/public/uploads/shares/sliders/sajilomeals-banner.jpg"
+                        alt="Third slide"
+                    />
+                </Carousel.Item>
+
             </Carousel>
         </div>
     );
